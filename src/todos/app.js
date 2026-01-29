@@ -1,12 +1,13 @@
 import html from './app.html?raw';
 import todoStore, { Filters } from '../store/todo.store';
-import { renderTodos } from './use-cases/index';
+import { renderTodos, renderPending } from './use-cases/index';
 
 const elementIds = {
     TodoList : '.todo-list',
     NewTodoInput : '#new-todo-input',
     ClearCompleted: '.clear-completed',
     TodoFilters: '.filtro',
+    PendingCountLable: '#pending-cout',
 }
 
 //ESTA FUNCION RENDERIZARA LA APLICACION EN LA PANTALLA
@@ -15,12 +16,16 @@ const elementIds = {
  * @param { String } elementId 
  */
 export const App = ( elementId ) => {
-
     //FUNCION FLECHA PARA RENDERIZAR LOS TODOS EN NUESTRO HTML
     const displayTodos = () => {
         const todos = todoStore.getTodo( todoStore.getCurretFilter() );
         renderTodos( elementIds.TodoList, todos );
+        updatePendingCount();
     }
+
+    const updatePendingCount = () => {
+        renderPending(PendingCountLable);
+    };
 
     (() => {
         const app = document.createElement( 'div' );
