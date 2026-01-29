@@ -24,7 +24,7 @@ export const App = ( elementId ) => {
     }
 
     const updatePendingCount = () => {
-        renderPending(PendingCountLable);
+        renderPending(elementIds.PendingCountLable);
     };
 
     (() => {
